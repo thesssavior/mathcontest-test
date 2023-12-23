@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import React, { useEffect, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import Main from "../components/stopwatch/Main/Main";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import Leaderboard from "../components/leaderboard";
 

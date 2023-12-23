@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import calculateTimeInSeconds from '../../../Helpers/TimerHelper';
+import calculateTimeInSeconds from '../Helpers/TimerHelper';
 import Controls from '../Controls/Controls';
-import useTimeStore from '../../timeStore';
 import './Main.css';
 
 type Props = {

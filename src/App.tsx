@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './routes/home'
 import Layout from './components/layout'
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { auth } from './firebase'
-import ProtectedRoute from './components/protected-route'
 import List from './routes/list'
 import Problem from './routes/problem'
 
@@ -20,10 +19,7 @@ const Wrapper = styled.div`
 const router = createBrowserRouter([
   {
     path: "/",
-    element: 
-      <ProtectedRoute>
-        <Layout/>
-      </ProtectedRoute>,
+    element: <Layout/>,
     children: [
       {
         path: "",

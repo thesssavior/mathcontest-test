@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import styled from 'styled-components';
+import { storage } from '../firebase';
 
 const Wrapper = styled.div`
     text-align: center;
@@ -15,7 +16,6 @@ const List: React.FC = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const storage = getStorage();
         const folderRef = ref(storage, folderName || '');
 
         const fileList = await listAll(folderRef);
