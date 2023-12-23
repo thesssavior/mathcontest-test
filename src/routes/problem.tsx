@@ -7,11 +7,16 @@ import Main from "../components/stopwatch/Main/Main";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import Leaderboard from "../components/leaderboard";
+import '../../styles/problem.css'
 
 const Wrapper = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
+`
+const Error = styled.span`
+    color: tomato;
+    font-weight: 600;
 `
 
 const Form = styled.form``
@@ -22,26 +27,36 @@ export default function Problem() {
     // Params from router 
     const { folderName, number } = useParams<{folderName:string; number:string}>()
 
-    // const setTimeArray = useTimeStore((state) => state.setTimeArray);
-    // const timeArray = useTimeStore((state) => state.timeArray);
-
     // component states
-    const [timeInSeconds, setTimeInSeconds] = useState(0);
+    const [wrong, setWrong] = useState(false) 
+    const [isLoading, setIsLoading] = useState(false) 
+    const [start, setStart] = useState(false)
     const [imgUrl, setImgUrl] = useState('')
     const [answer, setAnswer] = useState('') 
-    const [realAnswer, setRealAnswer] = useState<number>()
-    const [isLoading, setIsLoading] = useState(false) 
     const [error, setError] = useState('') 
+    const [realAnswer, setRealAnswer] = useState<number>()
+    const [timeInSeconds, setTimeInSeconds] = useState(0);
+
     const onChange =async (e:React.ChangeEvent<HTMLInputElement>) => {
         setAnswer(e.target.value)
     }
     const backspaced = folderName?.slice(0,-1)
     const basePath = `${folderName}/${backspaced}${number}`
 
-    // // zustand state from stopwatch
-    // // hooks can only be called inside a body of a function component
-    // // useEffect나 다른 함수 안에서 쓸 수가 없다
-    // const timeArray = useTimeStore((state) => state.timeArray);
+    const [intervalId, setIntervalId] = useState<number>(0);
+
+    const handlePlayButton = () => {
+        setStart(true)
+        const interval:any = setInterval(() => {
+            setTimeInSeconds((previousState:number) => previousState + 1);
+        }, 1000);
+
+        setIntervalId(interval);
+    }
+
+    const handleStopButton = () => {
+        clearInterval(intervalId);
+    }
 
     // firebase ref
     useEffect(()=>{
@@ -74,7 +89,15 @@ export default function Problem() {
         e.preventDefault()
         const user = auth.currentUser
         // 정답이 아님 입구컷? 아님 걍 틀린 그대로 db에 보낼까?
+        if (parseInt(answer) !== realAnswer) {
+            setWrong(true)
+            setTimeout( ()=> {
+                setWrong(false)
+            }, 2000)
+            
+        }
         if (!user || isLoading || parseInt(answer) !== realAnswer) return null;
+        handleStopButton()
         try {
             setIsLoading(true)
             // create/update document 
@@ -93,14 +116,21 @@ export default function Problem() {
     }
     return (
         <Wrapper>
+            {start? null : 
+            <button id="start" onClick={handlePlayButton}>
+                start
+            </button>
+            }
+
             <Form onSubmit={onSubmit}>
                 <Wrapper>
                     <img src={imgUrl} alt="math prob image"/>
                 </Wrapper>
                 <Wrapper>
-                    <Input type="answer" value={answer} onChange={onChange}/>
+                    <Input type="answer" value={answer} onChange={onChange} placeholder="정답"/>
                     <Input type="submit" value={ isLoading ? "Loading..." : "Submit"}/>
                 </Wrapper>
+                {wrong? <Error>try again</Error>: null}
             </Form>
             <Wrapper>
                 <Main timeInSeconds={timeInSeconds} setTimeInSeconds={setTimeInSeconds}/>

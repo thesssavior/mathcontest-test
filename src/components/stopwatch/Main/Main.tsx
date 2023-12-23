@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import calculateTimeInSeconds from '../Helpers/TimerHelper';
-import Controls from '../Controls/Controls';
 import './Main.css';
 
 type Props = {
@@ -31,7 +30,6 @@ function Main(props:Props) {
                 <span>:</span>
                 <p id="second">{timeArray[2]}</p>
             </section>
-            <Controls setTimeInSeconds={setTimeInSeconds} />
         </main>
     );
 }
