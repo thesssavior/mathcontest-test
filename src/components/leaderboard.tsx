@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection,query,orderBy, getDocs, onSnapshot } from "firebase/firestore";
-import styled from "styled-components";
 import { Unsubscribe } from "firebase/auth";
+import "../styles/leaderboard.css"
 
 type Props = {
     basePath: string
@@ -14,11 +14,8 @@ interface LeaderboardItem {
     time: number
 }
 
-const Wrapper = styled.div``
-
 export default function Leaderboard(props:Props) {
     const {basePath} = props
-    const [isLoading, setIsLoading] = useState(false)
     const [leaderboard, setLeaderboard] = useState<Array<LeaderboardItem>>([]);
 
     useEffect(()=>{
@@ -35,34 +32,26 @@ export default function Leaderboard(props:Props) {
             })
             // no errors until.
             setLeaderboard(dataArr) 
- 
-            // i get error trying concatenation, why not just dataArr and done 
-            // setLeaderboard((prevLeaderboard) => [...(prevLeaderboard || []), ...dataArr]);
-            // Type 'LeaderboardItem[] | undefined' must have a '[Symbol.iterator]()' method that returns an iterator
-            // || []를 써서 undefined도 []로 취급
-        }
+         }
         getLeaderboard()
         unsubscribe = onSnapshot(leaderboardRef, ()=>{
             getLeaderboard()
         })
         return ()=> {
             unsubscribe && unsubscribe();
-            // if(unsubscribe)  {
-            //     unsubscribe()
-            // }
         }
     }
     ,[])
 
     return (
-        <Wrapper>
-            <h1>Leaderboard</h1>
+        <div className="leaderboard">
+            <h1 className="heading">Leaderboard</h1>
             {leaderboard.map((item, index)=>{
                 return (
                     <LeaderboardItem data={item} index={index+1} key={index}/>
                 )
             })}
-        </Wrapper>
+        </div>
     );
     // setLeaderboard()
 }
@@ -70,8 +59,22 @@ export default function Leaderboard(props:Props) {
 function LeaderboardItem({data,index}:{data:LeaderboardItem, index:number}) {
     if (!data) return <h3>shit</h3>;
     return (
-        <Wrapper>
-            <h3>rank: {index} username: {data.username} time: {data.time}</h3>
-        </Wrapper>
+        <div>
+            <ul role="list" className="divide-y divide-gray-100">
+                <li key={index} className="flex justify-center py-2">
+                <div className="flex min-w-0 gap-x-2">
+                    {/* <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" /> */}
+                    <div className="min-w-0 flex-auto">
+                    <p className="text-sm font-semibold mr-16 leading-6 text-gray-900">{index} {data.username}</p>
+                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">email</p>
+                    </div>
+                </div>
+                <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <p className="text-sm leading-6 text-gray-900">걸린 시간 : {data.time}</p>
+
+                </div>
+                </li>
+            </ul>
+        </div>  
     )
 }

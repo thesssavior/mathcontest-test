@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import calculateTimeInSeconds from '../Helpers/TimerHelper';
-import './Main.css';
+import '../../../styles/Main.css';
 
 type Props = {
     timeInSeconds: number,
-    setTimeInSeconds: Function
 }
 
 function Main(props:Props) {
-    const {timeInSeconds, setTimeInSeconds} = props
-    // const [timeInSeconds, setTimeInSeconds] = useState(0);
-    // const setTimeArray = useTimeStore((state) => state.setTimeArray);
-    // const timeArray = useTimeStore((state) => state.timeArray);
-    
+    const {timeInSeconds} = props
     const [timeArray, setTimeArray] = useState<Array<number|string>>([]);
-    // timeArray 를 firebase에 줘야하는데.. 어캐 export하지? 걍 위에서 value를 끄집어 올 수도? (props)
-    // redux?
 
     useEffect(() => {
         setTimeArray(calculateTimeInSeconds(timeInSeconds));

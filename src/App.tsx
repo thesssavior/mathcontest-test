@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './routes/home'
-import Layout from './components/layout'
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset'
 import { auth } from './firebase'
@@ -19,23 +18,17 @@ const Wrapper = styled.div`
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Layout/>,
-    children: [
-      {
-        path: "",
-        element: <Home/>,
-      },
-      {
-        path: "list/:folderName",
-        element: <List/>
-      },
-      {
-        path: "problem/:folderName/:number",
-        element: <Problem/>
-      }
-    ]
+    path: "",
+    element: <Home/>,
   },
+  {
+    path: "list/:folderName",
+    element: <List/>
+  },
+  {
+    path: "problem/:folderName/:number",
+    element: <Problem/>
+  }
 ])
 
 const GlobalStyle = createGlobalStyle`

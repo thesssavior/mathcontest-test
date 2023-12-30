@@ -1,0 +1,10 @@
+/* Style for the whiteboard container */
+.whiteboard-container {
+  position: relative;
+}
+
+/* Style for the whiteboard canvas */
+.whiteboard {
+  border: 1px solid #ccc;
+  cursor: crosshair;
+}
