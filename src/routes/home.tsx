@@ -1,13 +1,16 @@
-import {Login} from "../components/login";
-import ProblemSet from "../components/problem-set";
+import {Login} from "../components/login-page/login";
+import ProblemSet from "../components/problem-list/problem-set";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { LoggedIn } from "../components/login-page/logged-in";
+import { LoginWithEmail } from "../components/login-page/login-email";
 
 
 export default function Home() {
     const [username, setUsername] = useState('')
     const [show, setShow] = useState(true)
+    const [signInAsGuest,setSignInAsGuest] = useState(true)
     
     const onLogOut = async() => {
         await signOut(auth)
@@ -26,20 +29,20 @@ export default function Home() {
 
     return (
         <div>
-            {show?
-            <Login setUsername={setUsername}/>
-            :      
-            <div className="flex min-h-full flex-1 flex-col justify-center px-4 py-4 lg:px-4">
-            <div className="sm:mx-auto sm:w-6/12 sm:max-w-xs mt-8 text-center">
-              <h2 className="mt-10 mb-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Logged in as {username}
-              </h2>
-              <button className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10"
-              onClick={onLogOut}>Log out</button>
+            {signInAsGuest && show && <Login setUsername={setUsername}/>}
+            {!signInAsGuest && show && <LoginWithEmail setUsername={setUsername}/>}
+            {!show && <LoggedIn username={username} onLogOut={onLogOut}/>}
+
+            {show? <div className="switcher flex w-full justify-center items-center">
+            {!signInAsGuest? 
+            <button className="flex w-1/4 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
+            onClick={()=>setSignInAsGuest(true)}>게스트로 로그인</button>
+            : <button className="flex w-1/4 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
+            onClick={()=>setSignInAsGuest(false)}>이메일로 로그인</button>
+            }        
             </div>
-            
-            </div>
-            }
+            :null}
+
             <ProblemSet/>
         </div>
     );

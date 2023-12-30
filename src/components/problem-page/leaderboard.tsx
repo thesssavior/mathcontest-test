@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { collection,query,orderBy, getDocs, onSnapshot } from "firebase/firestore";
 import { Unsubscribe } from "firebase/auth";
-import "../styles/leaderboard.css"
+import "../../styles/leaderboard.css"
 
 type Props = {
     basePath: string

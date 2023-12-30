@@ -56,17 +56,6 @@ const List: React.FC = () => {
         </div>
       </div>
     </div>
-      {/* <h1>{folderName}</h1>
-      <ul>
-        {files.map((url, index) => (
-          <li key={index}>
-            <Link to={`/problem/${folderName}/${index+1}`}>
-                <img src={url} alt='a'/>
-                Problem {index + 1}
-            </Link>
-          </li>
-        ))}
-      </ul> */}
     </>
   );
 };

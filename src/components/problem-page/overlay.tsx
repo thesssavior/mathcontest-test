@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/overlay.css';
+import '../../styles/overlay.css';
 
 interface OverlayProps {
   onOverlayClick: () => void;

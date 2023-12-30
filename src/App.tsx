@@ -6,6 +6,7 @@ import reset from 'styled-reset'
 import { auth } from './firebase'
 import List from './routes/list'
 import Problem from './routes/problem'
+import ProblemOverview from './routes/problem-overview'
 
 const Wrapper = styled.div`
   position: fixed;
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   },
   {
     path: "problem/:folderName/:number",
+    element: <ProblemOverview/>
+  },
+  {
+    path: "problem/:folderName/:number/solve",
     element: <Problem/>
   }
 ])

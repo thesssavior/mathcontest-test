@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import Main from "../components/stopwatch/Main/Main";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import Leaderboard from "../components/leaderboard";
+import Leaderboard from "../components/problem-page/leaderboard";
 import '../styles/problem.css'
-import Overlay from "../components/overlay";
-import Whiteboard from "../components/whiteboard";
+import Overlay from "../components/problem-page/overlay";
+import Whiteboard from "../components/problem-page/whiteboard";
 
 export default function Problem() {
     // Params from router 
@@ -131,7 +131,6 @@ export default function Problem() {
                 <Main timeInSeconds={timeInSeconds}/>
             </div>
             <Whiteboard/>
-            <Leaderboard basePath={basePath}/>
         </div>
     );
 }

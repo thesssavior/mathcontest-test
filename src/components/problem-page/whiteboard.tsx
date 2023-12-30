@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import '../styles/whiteboard.css'; // Add your own CSS file for styling
+import '../../styles/whiteboard.css'; // Add your own CSS file for styling
 
 const Whiteboard: React.FC = () => {
   // useRef: reference html elem
