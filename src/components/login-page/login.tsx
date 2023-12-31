@@ -74,7 +74,7 @@ export const Login: React.FC<LoginProps> = ({setUsername}) => {
             <div className="mt-1 w-1/4 flex justify-center">
               <input
                 type="submit"
-                className="block w-full h-8 rounded-md border-0 bg-indigo-600 px-3 py-1 mb-1 text-sm font-semibold leading-6 sm:leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="block w-full bg-gray-200 h-8 rounded-md border-0 px-3 py-1 mb-1 text-sm font-medium leading-6 sm:leading-6 text-black shadow-sm hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 value={isLoading? "Loading...":"확인"}
               />
             </div>

@@ -8,13 +8,17 @@ export default function ProblemOverview() {
     const basePath = `${folderName}/${backspaced}${number}`
 
     return (
-        <div>
+        <div className="problem-overview w-full h-full overflow-visible">
             <h1 className="Title">{`${folderName}`}</h1>
-            <Link to={`/problem/${folderName}/${number}/solve`}>
+            <Leaderboard basePath={basePath}/>
+            <div className="flex flex-col justify-center items-center my-4">
+            <Link 
+                className="flex w-1/4 justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
+                to={`/problem/${folderName}/${number}/solve`}>
                 풀기
             </Link>
+            </div>
             <Discuss/>
-            <Leaderboard basePath={basePath}/>
         </div>
     )
 }

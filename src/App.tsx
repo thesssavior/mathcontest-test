@@ -9,7 +9,6 @@ import Problem from './routes/problem'
 import ProblemOverview from './routes/problem-overview'
 
 const Wrapper = styled.div`
-  position: fixed;
   display: flex;
   height: 100%;
   width: 100%;

@@ -28,7 +28,6 @@ export default function ProblemSet() {
                 <p className="text-base font-semibold text-gray-900">{callout.description}</p>
                 </div>
                 </Link>
-                
             ))}
             </div>
         </div>
