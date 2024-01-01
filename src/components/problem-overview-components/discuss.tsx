@@ -10,7 +10,6 @@ const Form = styled.form`
 `;
 
 const TextArea = styled.textarea`
-  background-color: #1d9bf0;
   border: 2px solid white;
   padding: 20px;
   border-radius: 20px;
@@ -25,7 +24,8 @@ const TextArea = styled.textarea`
   }
   &:focus {
     outline: none;
-    border-color: #1d9bf0;
+    border-width: 1.5px;
+    border-color: #7d97ad;
   }
 `;
 

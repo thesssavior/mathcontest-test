@@ -1,6 +1,7 @@
-import { Link, useParams } from "react-router-dom";
-import Leaderboard from "../components/problem-page/leaderboard";
-import Discuss from "../components/problem-page/discuss";
+import { useParams } from "react-router-dom";
+import Leaderboard from "../components/problem-overview-components/leaderboard";
+import {Intro} from "../components/problem-overview-components/intro";
+import CommentSection from "../components/problem-overview-components/comment-section";
 
 export default function ProblemOverview() {
     const { folderName, number } = useParams<{folderName:string; number:string}>()
@@ -9,16 +10,16 @@ export default function ProblemOverview() {
 
     return (
         <div className="problem-overview w-full h-full overflow-visible">
-            <h1 className="Title">{`${folderName}`}</h1>
+            <Intro folderName={folderName} number={number}/>
+            <div className="leaderboard w-full bg-gray-100 pb-5">
             <Leaderboard basePath={basePath}/>
-            <div className="flex flex-col justify-center items-center my-4">
-            <Link 
-                className="flex w-1/4 justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
-                to={`/problem/${folderName}/${number}/solve`}>
-                풀기
-            </Link>
             </div>
-            <Discuss/>
+            <div className="flex flex-col justify-center items-center my-4">
+
+            </div>
+            <div className="discuss w-full mt-3">
+                <CommentSection/>
+            </div>
         </div>
     )
 }

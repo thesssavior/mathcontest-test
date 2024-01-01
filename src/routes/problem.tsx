@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Main from "../components/stopwatch/Main/Main";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import Leaderboard from "../components/problem-page/leaderboard";
 import '../styles/problem.css'
 import Overlay from "../components/problem-page/overlay";
 import Whiteboard from "../components/problem-page/whiteboard";
@@ -75,16 +74,14 @@ export default function Problem() {
     const onSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const user = auth.currentUser
-        // 정답이 아님 입구컷? 아님 걍 틀린 그대로 db에 보낼까?
-        // 정답률 구하게.. 정답이 아닌것도 다 포함
         if (parseInt(answer) !== realAnswer) {
             setWrong(true)
             setTimeout( ()=> {
                 setWrong(false)
             }, 2000)
-            
         }
         if (!user || isLoading || parseInt(answer) !== realAnswer) return null;
+
         handleStopButton()
         try {
             setIsLoading(true)
@@ -101,36 +98,39 @@ export default function Problem() {
     }
 
     return (
-        <div>
+        <div className="problem">
             { showOverlay && <Overlay onOverlayClick={handleOverlayClick}/>}
 
-            <form onSubmit={onSubmit}>
-                <div className="problem-name mt-2">
+            <form className="w-full" onSubmit={onSubmit}>
+                {/* <div className="problem-name mt-2">
                     <p>{`${backspaced}${number}`}</p>
-                </div>
-                <div className="form-image mt-6">
-                    <img className="rounded" src={imgUrl} alt="math prob image"/>
+                </div> */}
+                <div className="form-image">
+                    <img className="rounded top-0 left-0 w-screen" src={imgUrl} alt="math prob image"/>
                 </div>
                 <div className="form-input-wrapper">
                     <input 
-                        className="form-input"
+                        className="form-input w-3/4"
                         type="answer" 
                         value={answer} 
                         onChange={onChange} 
                         placeholder="정답"
                     />
                     <input 
-                        className="inline-flex items-center rounded-md bg-blue-50 px-6 py-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 hover:bg-blue-100"
+                        // className="inline-flex items-center rounded-md bg-blue-50 px-6 py-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 hover:bg-blue-100"
+                        className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         type="submit"
                         value={ isLoading ? "Loading..." : "Submit"}
                     />
                 </div>
                 {wrong? <p className="form-error">try again</p>: null}
             </form>
-            <div>
+            <div className="stopwatch ">
                 <Main timeInSeconds={timeInSeconds}/>
             </div>
+            <div className="flex">
             <Whiteboard/>
+            </div>
         </div>
     );
 }

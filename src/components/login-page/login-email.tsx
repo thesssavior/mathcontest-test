@@ -1,4 +1,4 @@
-import { signInAnonymously, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { auth } from "../../firebase"
@@ -68,7 +68,7 @@ export const LoginWithEmail: React.FC<LoginWithEmailProps> = ({setUsername}) => 
       </div>
       <div className="mt-5 sm:mx-auto max-w-md sm:w-full sm:max-w-xs">
         <form className="space-y-2" action="#" method="POST" onSubmit={onSubmit}>
-            <div className="mt-1 w-full flex flex-col items-center justify-center">
+            <div className="w-full flex flex-col gap-1 items-center justify-center">
               <input
                 id="localUsername"
                 name="localUsername"

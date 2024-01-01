@@ -1,6 +1,3 @@
-.page-leaderboard {
-    background-color: #fafbfc;
-}
 .page-leaderboard .hero {
     background-image: url(https://d125fmws0bore1.cloudfront.net/assets/pages/leaderboard/hero-leaderboard-b861e1752ed28ae950fcfccd51008fe7f4d158a08c68e909201f46e6086992ad.jpg);
 }
@@ -111,9 +108,6 @@
 .page-leaderboard .ranking .ranking-table-row:nth-child(even) {
     background-color: #fafbfc;
 }
-.page-leaderboard .ranking .ranking-table-row-leader-1,
-.page-leaderboard .ranking .ranking-table-row-leader-2,
-.page-leaderboard .ranking .ranking-table-row-leader-3,
 div[id*="top3-row"]
 {
     display: flex;
@@ -128,9 +122,6 @@ div[id*="top3-row"]
 }
 
 @media (min-width: 33em) {
-    .page-leaderboard .ranking .ranking-table-row-leader-1,
-    .page-leaderboard .ranking .ranking-table-row-leader-2,
-    .page-leaderboard .ranking .ranking-table-row-leader-3,
     div[id*="top3-row"]
     {
         padding-top: 1.125em;
@@ -138,9 +129,6 @@ div[id*="top3-row"]
     }
 }
 
-.page-leaderboard .ranking .ranking-table-row-leader-1 .ranking-table-data-leader-1,
-.page-leaderboard .ranking .ranking-table-row-leader-2 .ranking-table-data-leader-2,
-.page-leaderboard .ranking .ranking-table-row-leader-3 .ranking-table-data-leader-3,
 div[id*="top3-row-data"]
 {
     display: flex;
@@ -149,18 +137,12 @@ div[id*="top3-row-data"]
 }
 
 @media (min-width: 48em) {
-    .page-leaderboard .ranking .ranking-table-row-leader-1 .ranking-table-data-leader-1,
-    .page-leaderboard .ranking .ranking-table-row-leader-2 .ranking-table-data-leader-2,
-    .page-leaderboard .ranking .ranking-table-row-leader-3 .ranking-table-data-leader-3,
     div[id*="top3-row-data"]
     {
         width: 15%;
     }
 }
 
-.page-leaderboard .ranking .ranking-table-row-leader-1 .ranking-table-data-leader-1 .medal-gold,
-.page-leaderboard .ranking .ranking-table-row-leader-2 .ranking-table-data-leader-2 .medal-silver,
-.page-leaderboard .ranking .ranking-table-row-leader-3 .ranking-table-data-leader-3 .medal-bronze,
 div[id*=top3-medal]
 {
     margin-top: -1.313em;
@@ -168,9 +150,6 @@ div[id*=top3-medal]
     width: 2.875em;
 }
 @media (min-width: 33em) {
-    .page-leaderboard .ranking .ranking-table-row-leader-1 .ranking-table-data-leader-1 .medal-gold,
-    .page-leaderboard .ranking .ranking-table-row-leader-2 .ranking-table-data-leader-2 .medal-silver,
-    .page-leaderboard .ranking .ranking-table-row-leader-3 .ranking-table-data-leader-3 .medal-bronze,
     div[id*=top3-medal]
     {
         margin-top: -1.563em;
@@ -178,34 +157,28 @@ div[id*=top3-medal]
         width: 3.875em;
     }
 }
-.page-leaderboard .ranking .ranking-table-row-leader-1,
 #top3-row-1
 {
     border: solid 0.125em #ecc81a;
 }
-.page-leaderboard .ranking .ranking-table-row-leader-1 .ranking-table-data-leader-1 .medal-gold,
 #top3-medal-1
 {
     background: url(https://d125fmws0bore1.cloudfront.net/assets/pages/leaderboard/medal-gold-c49052bfa07f36621f16dbe77f7fc36cbafd72ff088ea970256ff998be05687b.svg) no-repeat;
     background-size: contain;
 }
-.page-leaderboard .ranking .ranking-table-row-leader-2,
 #top3-row-2
 {
     border: solid 0.125em #dbe2e8;
 }
-.page-leaderboard .ranking .ranking-table-row-leader-2 .ranking-table-data-leader-2 .medal-silver,
 #top3-medal-2
 {
     background: url(https://d125fmws0bore1.cloudfront.net/assets/pages/leaderboard/medal-silver-d099c5dd916c167c3ba4716c8968a819f317daaef1901c8e8bae6c6932852faa.svg) no-repeat;
     background-size: contain;
 }
-.page-leaderboard .ranking .ranking-table-row-leader-3,
 #top3-row-3
 {
     border: solid 0.125em #dfdfd1;
 }
-.page-leaderboard .ranking .ranking-table-row-leader-3 .ranking-table-data-leader-3 .medal-bronze,
 #top3-medal-3
 {
     background: url(https://d125fmws0bore1.cloudfront.net/assets/pages/leaderboard/medal-bronze-d0f15d413800257442c8d4b2d5239cfe28c9fd9594f863ab1fad5258f8d1d5eb.svg) no-repeat;
@@ -290,6 +263,7 @@ h3,
     color: #2e3d49;
     -webkit-font-smoothing: antialiased;
 }
+
 @media screen and (min-width: 48rem) {
     h2,
     h3,
@@ -326,6 +300,9 @@ h3 {
     text-transform: uppercase;
     font-weight: 600;
     color: #7d97ad;
+}
+#others {
+    font-weight: 400;
 }
 @media screen and (min-width: 48rem) {
     .h6 {
